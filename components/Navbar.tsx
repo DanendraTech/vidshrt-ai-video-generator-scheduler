@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Sparkles, LayoutDashboard } from "lucide-react";
 
 export function Navbar() {
   return (
@@ -48,6 +49,16 @@ export function Navbar() {
               </SignInButton>
             </SignedOut>
             <SignedIn>
+              <Link href="/dashboard">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden sm:inline-flex"
+                >
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  Dashboard
+                </Button>
+              </Link>
               <UserButton />
             </SignedIn>
           </nav>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 export function Hero() {
   return (
@@ -30,10 +31,22 @@ export function Hero() {
           </p>
 
           <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <Button size="lg" className="h-12 px-8 text-base">
-              Get Started Free
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button size="lg" className="h-12 px-8 text-base">
+                  Get Started Free
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button size="lg" className="h-12 px-8 text-base">
+                  Go to Dashboard
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </SignedIn>
             <Button
               variant="outline"
               size="lg"
