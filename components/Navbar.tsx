@@ -1,14 +1,16 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import { Sparkles, LayoutDashboard } from "lucide-react";
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur-md supports-backdrop-filter:bg-background/60">
       <div className="container mx-auto flex h-14 max-w-screen-2xl items-center px-4 md:px-6">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="text-xl font-bold bg-gradient-to-tr from-primary to-primary/70 bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-linear-to-tr from-primary to-primary/70 bg-clip-text text-transparent">
               VidShrt
             </span>
           </Link>
@@ -36,10 +38,29 @@ export function Navbar() {
         <div className="flex flex-1 items-center justify-end space-x-2 md:justify-end">
           <nav className="flex items-center space-x-2">
             <ModeToggle />
-            <Button variant="ghost" size="sm" className="hidden sm:inline-flex">
-              Log in
-            </Button>
-            <Button size="sm">Get Started</Button>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <Button variant="ghost" size="sm">
+                  Log in
+                </Button>
+              </SignInButton>
+              <SignInButton mode="modal">
+                <Button size="sm">Get Started</Button>
+              </SignInButton>
+            </SignedOut>
+            <SignedIn>
+              <Link href="/dashboard">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="hidden sm:inline-flex"
+                >
+                  <LayoutDashboard className="mr-2 h-4 w-4" />
+                  Dashboard
+                </Button>
+              </Link>
+              <UserButton />
+            </SignedIn>
           </nav>
         </div>
       </div>
