@@ -16,7 +16,7 @@ export async function syncUser() {
   const { data: existingUser } = await supabase
     .from("users")
     .select("id")
-    .eq("id", user.id)
+    .eq("user_id", user.id)
     .single()
 
   if (existingUser) {

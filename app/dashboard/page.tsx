@@ -13,7 +13,7 @@ export default async function DashboardPage() {
   await syncUser();
 
   return (
-    <div className="container mx-auto py-10">
+    <div>
       <h1 className="text-3xl font-bold">Dashboard</h1>
       <p className="mt-4 text-muted-foreground">
         Welcome back, {user.firstName}!
